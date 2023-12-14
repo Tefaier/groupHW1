@@ -13,8 +13,8 @@ public class BasketRepositoryInMemory implements BasketRepository{
 
   @Override
   public void changeBasketContent(long id, Product product, float change) {
-    logger.info("Basket with id " + id + " was changed: product->" + product.name() + " change->" + change);
     synchronized (Long.valueOf(id)) {
+      logger.info("Basket with id " + id + " was changed: product->" + product.displayName + " change->" + change + " " + product.unitName);
       if (!baskets.containsKey(id)) {
         baskets.put(id, new Basket());
       }
@@ -28,8 +28,8 @@ public class BasketRepositoryInMemory implements BasketRepository{
 
   @Override
   public void tryOrderBasket(long id) {
-    logger.info("Basket with id " + id + " was ordered");
     synchronized (Long.valueOf(id)) {
+      logger.info("Basket with id " + id + " was ordered");
       try {
         // baskets.get(id).getProducts();
         // request to sklad
@@ -37,6 +37,14 @@ public class BasketRepositoryInMemory implements BasketRepository{
       } catch (RuntimeException e) {
         logger.info("Basket with id " + id + " was ordered but failed!");
       }
+    }
+  }
+
+  @Override
+  public void removeBasket(long id) {
+    synchronized (Long.valueOf(id)) {
+      logger.info("Basket with id " + id + " was removed");
+      baskets.remove(id);
     }
   }
 }

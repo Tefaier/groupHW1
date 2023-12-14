@@ -52,6 +52,9 @@ public class CommandParserTXT {
     } else if (parts[0].equalsIgnoreCase("order")) {
       long id = Long.parseLong(parts[1]);
       basketRepository.tryOrderBasket(id);
+    } else if (parts[0].equalsIgnoreCase("remove")) {
+      long id = Long.parseLong(parts[1]);
+      basketRepository.removeBasket(id);
     } else {
       logger.info("Unknown command: " + parts[0]);
     }
