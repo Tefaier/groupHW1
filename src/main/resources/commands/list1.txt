@@ -1,1 +1,16 @@
 get 1 Water 10
+get 1 Bread 20
+get 2 Flour 5
+get 3 Water 7
+order 1
+get 2 Bread 1000
+remove 2
+get 2 Flour 3
+order 2
+order 3
+get 1 Water 5
+order 1
+get 4 Flour 1
+remove 4
+get 2 Bread 2
+order 2

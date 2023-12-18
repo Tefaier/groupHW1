@@ -21,7 +21,7 @@ public class CommandParserTXT {
       throw new IllegalArgumentException("File for CommandParserTXT has to be of type txt");
     }
     this.sourcePath = sourcePath;
-    this.reader = new BufferedReader(new FileReader(DefaultIOOperations.getPath(sourcePath)));
+    this.reader = new BufferedReader(new FileReader(DefaultIOOperations.getPath(this.sourcePath)));
   }
 
   public boolean applyNextCommand () throws IOException {
