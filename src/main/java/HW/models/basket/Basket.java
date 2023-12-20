@@ -9,6 +9,15 @@ import java.util.concurrent.ConcurrentHashMap;
 public class Basket {
   private ConcurrentHashMap<Product, Float> products = new ConcurrentHashMap<>();
 
+  public Basket (Map<Product, Float> products) {
+    this.products = new ConcurrentHashMap<>();
+    this.products.putAll(products);
+  }
+
+  public Basket () {
+    this.products = new ConcurrentHashMap<>();
+  }
+
   public synchronized void alterContent (Product product, float change) {
     if (products.containsKey(product)) {
       float newValue = products.get(product) + change;
@@ -27,5 +36,9 @@ public class Basket {
 
   public Map<Product, Float> getProducts () {
     return  Map.copyOf(products);
+  }
+
+  public Basket getCopy() {
+    return new Basket(getProducts());
   }
 }

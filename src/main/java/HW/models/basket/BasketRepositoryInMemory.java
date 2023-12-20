@@ -2,9 +2,11 @@ package HW.models.basket;
 
 import HW.models.enums.Product;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 public class BasketRepositoryInMemory implements BasketRepository{
   private static final Logger logger = Logger.getLogger(BasketRepositoryInMemory.class.getSimpleName());
@@ -46,5 +48,12 @@ public class BasketRepositoryInMemory implements BasketRepository{
       logger.info("Basket with id " + id + " was removed");
       baskets.remove(id);
     }
+  }
+
+  @Override
+  public Map<Long, Basket> getContent() {
+    return baskets.entrySet().stream()
+        .map(entry -> Map.entry(entry.getKey(), entry.getValue().getCopy()))
+        .collect(Collectors.toMap(val -> val.getKey(), val -> val.getValue()));
   }
 }
