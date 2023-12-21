@@ -1,0 +1,15 @@
+get 1 Water 2
+get 1 Bread 8
+get 2 Water 4
+order 2
+order 1
+get 3 Bread 4
+order 3
+remove 3
+get 2 Water 7
+get 2 Bread 9
+remove 2
+get 2 Water 0.5
+get 2 Bread 2
+order 2
+get 5 Bread 2
