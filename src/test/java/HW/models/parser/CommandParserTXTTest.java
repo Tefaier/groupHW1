@@ -30,7 +30,6 @@ class CommandParserTXTTest {
 
   @Test
   public void testIllegalOrders() {
-    //  На складе недостаточно воды и нет муки. Корзина 3 не была создана.
     String path = "commands/testIllegal.txt";
     try {
       CommandParserTXT parser = new CommandParserTXT(path, this.basketRepository);
@@ -50,14 +49,11 @@ class CommandParserTXTTest {
   @Test
   public void testOverall() {
     String path = "commands/testOverall.txt";
-    // Заказ второй корзины уменьшает количество воды ниже требований первой. Заказ третьей прошёл, корзина удалена.
     try {
       CommandParserTXT parser = new CommandParserTXT(path, this.basketRepository);
       parser.applyAllCommands();
       Map<Product, Float> storageContent = this.storage.getContent();
       Map<Long, Basket> baskets = this.basketRepository.getContent();
-      // Корзины 2 и 3 заказаны и опустошены, причём третья удалена из памяти, а вторую заказали дважды. 
-      // Корзина один не была заказана и сохранилась в памяти.
       assertEquals(4f, storageContent.get(Product.Bread));
       assertEquals(0.5f, storageContent.get(Product.Water));
       assertEquals(2, baskets.size());
