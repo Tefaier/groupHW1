@@ -56,7 +56,8 @@ class CommandParserTXTTest {
       parser.applyAllCommands();
       Map<Product, Float> storageContent = this.storage.getContent();
       Map<Long, Basket> baskets = this.basketRepository.getContent();
-      // Корзины 2 и 3 заказаны и опустошены, причём третья удалена из памяти. Корзина один не была заказана и сохранилась в памяти.
+      // Корзины 2 и 3 заказаны и опустошены, причём третья удалена из памяти, а вторую заказали дважды. 
+      // Корзина один не была заказана и сохранилась в памяти.
       assertEquals(4f, storageContent.get(Product.Bread));
       assertEquals(0.5f, storageContent.get(Product.Water));
       assertEquals(2, baskets.size());
