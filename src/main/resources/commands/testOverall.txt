@@ -1,0 +1,7 @@
+get 1 Water 2
+get 1 Bread 8
+get 2 Water 4
+order 2
+order 1
+get 3 Bread 4
+order 3
