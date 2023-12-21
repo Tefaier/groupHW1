@@ -11,7 +11,11 @@ import java.util.stream.Collectors;
 public class BasketRepositoryInMemory implements BasketRepository{
   private static final Logger logger = Logger.getLogger(BasketRepositoryInMemory.class.getSimpleName());
   private final ConcurrentHashMap<Long, Basket> baskets = new ConcurrentHashMap<>();
-  // private final Sclad;
+  private final Storage storage;
+
+  public BasketRepositoryInMemory(Storage storage) {
+    this.storage = storage;
+  }
 
   @Override
   public void changeBasketContent(long id, Product product, float change) {
@@ -33,8 +37,8 @@ public class BasketRepositoryInMemory implements BasketRepository{
     synchronized (Long.valueOf(id)) {
       logger.info("Basket with id " + id + " was ordered");
       try {
-        // baskets.get(id).getProducts();
-        // request to sklad
+        Map<Product, Float> basketContent = baskets.get(id).getProducts();
+        this.storage.takeAway(basketContent);
         baskets.get(id).clearBasket();
       } catch (RuntimeException e) {
         logger.info("Basket with id " + id + " was ordered but failed!");
