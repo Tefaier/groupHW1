@@ -1,5 +1,6 @@
 package HW.models.storage;
 
+import HW.models.basket.Basket;
 import HW.models.enums.Product;
 
 import java.util.HashMap;
@@ -33,5 +34,9 @@ public class Storage{
     for (Product product : basketContent.keySet()) {
       this.content.put(product, this.content.get(product) - basketContent.get(product));
     }
+  }
+
+  public synchronized Map<Product, Float> getContent() {
+    return Map.copyOf(content);
   }
 }
