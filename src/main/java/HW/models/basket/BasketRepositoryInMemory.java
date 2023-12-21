@@ -1,6 +1,7 @@
 package HW.models.basket;
 
 import HW.models.enums.Product;
+import HW.models.storage.Storage;
 
 import java.util.HashMap;
 import java.util.Map;
