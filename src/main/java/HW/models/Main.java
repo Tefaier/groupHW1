@@ -15,7 +15,7 @@ public class Main {
   private static final Logger logger = Logger.getLogger(Main.class.getSimpleName());
 
   public static void main(String[] args) {
-    Map<Product, Float> storageContent = new HashMap<Product, Float>();
+    Map<Product, Float> storageContent = new HashMap<>();
     storageContent.put(Product.Bread, 100f);
     storageContent.put(Product.Flour, 100f);
     storageContent.put(Product.Water, 100f);
