@@ -37,7 +37,7 @@ class CommandParserTXTTest {
       parser.applyAllCommands();
       Map<Product, Float> storageContent = this.storage.getContent();
       Map<Long, Basket> baskets = this.basketRepository.getContent();
-      //  Тразакции не совершены. Корзины сохранились в памяти неизменными в изначальном количестве.
+      //  Заказы не совершены. Корзины сохранились в памяти неизменными в изначальном количестве.
       assertEquals(10f, storageContent.get(Product.Bread));
       assertEquals(5f, storageContent.get(Product.Water));
       assertEquals(2, baskets.size());
@@ -50,7 +50,7 @@ class CommandParserTXTTest {
   @Test
   public void testOverall() {
     String path = "commands/testOverall.txt";
-    // Заказ второй корзины уменьшает количество воды ниже требований первой. Заказ третьей прошёл
+    // Заказ второй корзины уменьшает количество воды ниже требований первой. Заказ третьей прошёл.
     try {
       CommandParserTXT parser = new CommandParserTXT(path, this.basketRepository);
       parser.applyAllCommands();
